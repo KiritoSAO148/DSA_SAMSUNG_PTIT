@@ -35,13 +35,14 @@ void FileIO(){
     #endif
 }
 
+multimap <double, int> mp;
+
 void solve (vi c, vi w, int W, int n){
-	multimap <double, int> ratio;
 	double maxx = 0;
 	f0 (i,n){
-		ratio.insert({(double) c[i] / w[i], i});
+		mp.insert({(double) c[i] / w[i], i});
 	}
-	for (multimap <double, int> :: reverse_iterator it = ratio.rbegin(); it != ratio.rend(); ++it){
+	for (multimap <double, int> :: reverse_iterator it = mp.rbegin(); it != mp.rend(); ++it){
 		double fraction = (double) W / w[it->se];
 		if (W >= 0 && W >= w[it->se]){
 			maxx += c[it->se];
@@ -58,6 +59,7 @@ int main(){
     FileIO();
     FastIO;
     TC(){
+    	mp.clear();
     	int n, W; cin >> n >> W;
     	vi c(n), w(n);
     	f0 (i,n) cin >> c[i] >> w[i];
