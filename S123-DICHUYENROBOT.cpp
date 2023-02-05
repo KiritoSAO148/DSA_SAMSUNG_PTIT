@@ -1,90 +1,130 @@
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
-int n; string s;
-char DH='B';
-int a = 0;
-void Robot(int i, int x,int y) {
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define ms(s,n) memset(s,n,sizeof(s))
+#define all(a) a.begin(),a.end()
+#define sz(a) int((a).size())
+#define f0(i,n) for (int i=0; i<n; i++)
+#define f1(i,n) for (int i=1; i<=n; i++)
+#define FastIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define TC() int t; cin >> t; while (t--)
+#define el cout << "\n"
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define maxn 
+
+const int MOD = (int) 1e9+7;
+
+void FileIO(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+}
+
+int n; 
+string s;
+char c = 'B';
+int cnt = 0;
+
+void Try(int i, int x, int y) {
     if (i == n) {
-        if(a==0)
+        if(cnt == 0)
         cout << x << " " << y << endl;
-        a++;
+        cnt++;
         return;
     }
-    if (DH == 'B') {
+    if (c == 'B') {
         if (s[i] == 'G') {
-            DH = 'B';
-            Robot(i + 1, x, y + 1);
+            c = 'B';
+            Try(i + 1, x, y + 1);
         }
         if (s[i] == 'B'){
-            DH = 'N';
-            Robot(i + 1, x, y - 1);
+            c = 'N';
+            Try(i + 1, x, y - 1);
         }
         if (s[i] == 'L') {
-            DH = 'T';
-            Robot(i + 1, x - 1, y);
+            c = 'T';
+            Try(i + 1, x - 1, y);
         }
         if (s[i] == 'R') {
-            DH = 'D';
-            Robot(i + 1, x + 1, y);
+            c = 'D';
+            Try(i + 1, x + 1, y);
         }
     }
-    if (DH == 'N') {
+    if (c == 'N') {
         if (s[i] == 'G') {
-            DH = 'N';
-            Robot(i + 1, x, y - 1);
+            c = 'N';
+            Try(i + 1, x, y - 1);
         }
         if (s[i] == 'B') {
-            DH = 'B';
-            Robot(i + 1, x, y + 1);
+            c = 'B';
+            Try(i + 1, x, y + 1);
         }
         if (s[i] == 'L') {
-            DH = 'D';
-            Robot(i + 1, x + 1, y);
+            c = 'D';
+            Try(i + 1, x + 1, y);
         }
         if (s[i] == 'R') {
-            DH = 'T';
-            Robot(i + 1, x - 1, y);
+            c = 'T';
+            Try(i + 1, x - 1, y);
         }
     }
-    if (DH == 'T') {
+    if (c == 'T') {
         if (s[i] == 'G') {
-            DH = 'T';
-            Robot(i + 1, x-1, y);
+            c = 'T';
+            Try(i + 1, x-1, y);
         }
         if (s[i] == 'B') {
-            DH = 'D';
-            Robot(i + 1, x+1, y);
+            c = 'D';
+            Try(i + 1, x+1, y);
         }
         if (s[i] == 'L') {
-            DH = 'N';
-            Robot(i + 1, x , y-1);
+            c = 'N';
+            Try(i + 1, x , y-1);
         }
         if (s[i] == 'R') {
-            DH = 'B';
-            Robot(i + 1, x, y+1);
+            c = 'B';
+            Try(i + 1, x, y+1);
         }
     }
-    if (DH == 'D') {
+    if (c == 'D') {
         if (s[i] == 'G') {
-            DH = 'D';
-            Robot(i + 1, x+1, y);
+            c = 'D';
+            Try(i + 1, x+1, y);
         }
         if (s[i] == 'B') {
-            DH = 'T';
-            Robot(i + 1, x-1, y);
+            c = 'T';
+            Try(i + 1, x-1, y);
         }
         if (s[i] == 'L') {
-            DH = 'B';
-            Robot(i + 1, x, y+1);
+            c = 'B';
+            Try(i + 1, x, y+1);
         }
         if (s[i] == 'R') {
-            DH = 'N';
-            Robot(i + 1, x , y-1);
+            c = 'N';
+            Try(i + 1, x , y-1);
         }
     }
 }
-int main()
-{
+
+int main(){
+    FileIO();
+    FastIO;
     cin >> n >> s;
-    Robot(0, 0, 0);
+    Try(0, 0, 0);
+    return 0;
 }
